@@ -1,37 +1,44 @@
 ﻿using System;
 
-interface IShape
+class Computer
 {
-    void Draw();
-}
+    public string CPU { get; set; }
+    public string RAM { get; set; }
+    public string Storage { get; set; }
 
-class Circle : IShape
-{
-    public void Draw()
+    public void ShowDetails()
     {
-        Console.WriteLine("Drawing Circle");
+        Console.WriteLine($"CPU: {CPU}");
+        Console.WriteLine($"RAM: {RAM}");
+        Console.WriteLine($"Storage: {Storage}");
     }
 }
 
-class Rectangle : IShape
+class ComputerBuilder
 {
-    public void Draw()
+    private Computer computer = new Computer();
+
+    public ComputerBuilder SetCPU(string cpu)
     {
-        Console.WriteLine("Drawing Rectangle");
+        computer.CPU = cpu;
+        return this;
     }
-}
 
-class ShapeFactory
-{
-    public static IShape GetShape(string shapeType)
+    public ComputerBuilder SetRAM(string ram)
     {
-        if (shapeType == "Circle")
-            return new Circle();
+        computer.RAM = ram;
+        return this;
+    }
 
-        if (shapeType == "Rectangle")
-            return new Rectangle();
+    public ComputerBuilder SetStorage(string storage)
+    {
+        computer.Storage = storage;
+        return this;
+    }
 
-        return null;
+    public Computer Build()
+    {
+        return computer;
     }
 }
 
@@ -39,10 +46,12 @@ class Program
 {
     static void Main()
     {
-        IShape shape1 = ShapeFactory.GetShape("Circle");
-        shape1.Draw();
+        Computer computer = new ComputerBuilder()
+            .SetCPU("Intel i7")
+            .SetRAM("16GB")
+            .SetStorage("512GB SSD")
+            .Build();
 
-        IShape shape2 = ShapeFactory.GetShape("Rectangle");
-        shape2.Draw();
+        computer.ShowDetails();
     }
 }

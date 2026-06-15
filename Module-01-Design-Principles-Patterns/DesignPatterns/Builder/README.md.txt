@@ -1,12 +1,16 @@
-# Factory Design Pattern
+# Builder Design Pattern
 
-Factory Pattern creates objects without exposing the creation logic.
+Builder Pattern constructs complex objects step by step.
 
-Classes:
-- Circle
-- Rectangle
-- ShapeFactory
+Object Created:
+- Computer
+
+Properties:
+- CPU
+- RAM
+- Storage
 
 Output:
-Drawing Circle
-Drawing Rectangle
+CPU: Intel i7
+RAM: 16GB
+Storage: 512GB SSD
